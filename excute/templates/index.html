@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  
+  {% load staticfiles %}
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css'>
+  <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css'>
+
+
+	<link rel="stylesheet" href="{% static 'css/mish.css' %}">
+
+	<title>EyeInfo</title>
+
+</head>
+
+<body >
+
+ 
+    
+  	<nav class="navbar navbar-inverse">
+  		<div class="container-fluid">
+  			<div class="navbar-header">
+  				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  				</button>
+  				<a class="navbar-brand" href="#">EyeInfo</a>
+  			</div>
+  			<div class="collapse navbar-collapse" id="myNavbar">
+  				<ul class="nav navbar-nav">
+  					<li class="active">
+  						<a href="http://umkkaea539e4.mish.koding.io:7777/">Home</a>
+  					</li>
+  					<li>
+  						<a href="http://umkkaea539e4.mish.koding.io:7777/profile/">Profile</a>
+  					</li>
+  					
+  				</ul>
+  				<ul class="nav navbar-nav navbar-right">
+  					<li>
+  						<a href="#">
+  							<span class="glyphicon glyphicon-user"></span>
+  							Sign Up
+  						</a>
+  					</li>
+  					<li>
+  						<a href="http://umkkaea539e4.mish.koding.io/fblogin-basic-master/fblogin-basic-master/index.php">
+  							<span class="glyphicon glyphicon-log-in"></span>
+  							Login
+  						</a>
+  					</li>
+  				</ul>
+  			</div>
+  		</div>
+  	</nav>
+
+
+<div ng-app="textAngularTest" ng-controller="wysiwygeditor" class="container app">
+
+  
+  <form action="/cut"  method='GET' enctype="multipart/form-data">
+   {% csrf_token %} 
+      {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}: {{ field }}
+        </div>
+      {% endfor %}
+      
+      
+   <h1>Editor</h1>
+    <div id="divinput" text-angular="text-angular" name="htmlcontent" ng-model="htmlcontent" ta-disabled='disabled'></div>
+    <input id="para" type="text" name="para" ng-model="htmlcontent" />
+    <div>{{htmlcontent}}</div>
+ 
+  <input type='Submit'  value='Recommend' />
+  </form>
+  
+  
+ </div>
+ 
+ 
+ <form action="/profile"  method='GET' enctype="multipart/form-data">
+  <input type='Submit'  value='POST' />
+   </form>   
+      
+  
+      <input type="text" size=30 id="Query" value="{{excuse1}}"/>
+      <button value="hi" onClick="hi()">hi</button>
+      <div id="content">Loading...</div> 
+   
+
+  <div class="wrapper" style="min-height: 100%; height: auto !important;
+      height: 100%; margin: 0 auto -8em;">
+  
+  
+  
+    <center style="color: #333; padding-top: 200px; 
+        font-family: Courier; font-size: 24px; font-weight: bold;">
+      <a href="/" rel="nofollow" style="text-decoration: none; color: #333;">
+        
+    
+        
+      </a>
+      
+      
+    </center>
+  
+  
+
+ </div>
+ 
+
+
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js'></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.2/textAngular-sanitize.min.js'></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.2/textAngular.min.js'></script>
+
+  <script type="text/javascript">
+	angular.module("textAngularTest", ['textAngular']);
+	function wysiwygeditor($scope) {
+	  
+		
+  	$scope.orightml = "{{excuse}}";
+	  $scope.htmlcontent = $scope.orightml;
+	 // alert('hi');
+	  $scope.disabled = false;
+	  //hi();
+	  imageSearch = new google.search.ImageSearch();
+      // Set searchComplete as the callback function when a search is 
+      // complete.  The imageSearch object will have results in it.
+      imageSearch.setResultSetSize(google.search.Search.LARGE_RESULTSET);
+      imageSearch.setSearchCompleteCallback(this, searchComplete, null);
+      imageSearch.execute(keyword);
+      hi();
+	 // var t = setTimeout(function(){wysiwygeditor($scope)}, 10000);
+	  
+	};
+  </script>
+ 
+ 
+
+    
+    
+    
+    
+    
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  
+  
+
+  <script src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load('search', '1');
+    var imageSearch;
+    var keyword="";
+    function searchComplete() {
+      // Check that we got results
+      if (imageSearch.results && imageSearch.results.length > 0) {
+        // Grab our content div, clear it.
+        var contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = '';
+        var results = imageSearch.results;
+        for (var i = 0; i < results.length; i++) {
+          // For each result image to the screen
+          var result = results[i];
+          var imgContainer = document.createElement('div');
+          var newImg = document.createElement('img');
+          // There is also a result.url property which has the escaped version
+          newImg.src=result.tbUrl;
+          imgContainer.appendChild(newImg);
+          // Put our title + image in the content
+          contentDiv.appendChild(imgContainer);
+        }
+        //clear search 
+        imageSearch.clearResults();
+      }
+    }
+  
+    function OnLoad() {
+      wysiwygeditor($scope);
+      // Create an Image Search instance.
+      imageSearch = new google.search.ImageSearch();
+      // Set searchComplete as the callback function when a search is 
+      // complete.  The imageSearch object will have results in it.
+      imageSearch.setResultSetSize(google.search.Search.LARGE_RESULTSET);
+      imageSearch.setSearchCompleteCallback(this, searchComplete, null);
+      imageSearch.execute(keyword);
+      hi();
+    }
+  
+  
+    function hi(){//lert('hi');
+        keyword = document.getElementById("Query").value;    
+        google.setOnLoadCallback(OnLoad);
+        imageSearch.execute(keyword);
+    }  
+    
+    
+    function overlay(){//alert('hi');
+        var htmlcontentM = document.getElementById("para").value;  
+        alert(htmlcontentM);
+    } 
+  
+   google.setOnLoadCallback(OnLoad);
+  
+  </script>
+  
+  
+  
+
+
+ </body>
+
+</html>

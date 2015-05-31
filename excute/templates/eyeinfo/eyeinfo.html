@@ -1,0 +1,141 @@
+
+
+<!DOCTYPE  html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+
+	<link rel="stylesheet" href="{% static 'css/mish.css' %}">
+
+	<title>EyeInfo</title>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">EyeInfo</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="#">Home</a>
+					</li>
+					<li>
+						<a href="#">Profile</a>
+					</li>
+					
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#">
+							<span class="glyphicon glyphicon-user"></span>
+							Sign Up
+						</a>
+					</li>
+					<li>
+						<a href="http://umkkaea539e4.mish.koding.io/fblogin-basic-master/fblogin-basic-master/index.php">
+							<span class="glyphicon glyphicon-log-in"></span>
+							Login
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	
+
+	
+    <form action="../../../excute/views" accept-charset="utf-8" method="GET"
+    target="_parent">
+
+      <section>
+        <span class="text" contenteditable="true"
+  	            name="text" placeholder="Write something..." value="Mish"></span><br/>
+        <input type="submit" name="" id="" value="check">
+      </section>
+      
+      
+     
+        
+    </form>
+    
+    
+     <aside>
+        <input type="text" size=30 id="Query"/>
+        <button value="hi" onClick="hi()">hi</button>
+        <div id="content">Loading...</div> 
+      </aside>
+    
+    
+    
+    
+    
+    
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="js/post.js"></script>
+  <script src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load('search', '1');
+    var imageSearch;
+    var keyword="";
+    function searchComplete() {
+      // Check that we got results
+      if (imageSearch.results && imageSearch.results.length > 0) {
+        // Grab our content div, clear it.
+        var contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = '';
+        var results = imageSearch.results;
+        for (var i = 0; i < results.length; i++) {
+          // For each result image to the screen
+          var result = results[i];
+          var imgContainer = document.createElement('div');
+          var newImg = document.createElement('img');
+          // There is also a result.url property which has the escaped version
+          newImg.src=result.tbUrl;
+          imgContainer.appendChild(newImg);
+          // Put our title + image in the content
+          contentDiv.appendChild(imgContainer);
+        }
+        //clear search 
+        imageSearch.clearResults();
+      }
+    }
+  
+    function OnLoad() {
+      // Create an Image Search instance.
+      imageSearch = new google.search.ImageSearch();
+      // Set searchComplete as the callback function when a search is 
+      // complete.  The imageSearch object will have results in it.
+      imageSearch.setSearchCompleteCallback(this, searchComplete, null);
+      imageSearch.execute(keyword);
+    }
+  
+  
+    function hi(){//lert('hi');
+        keyword = document.getElementById("Query").value;    
+        google.setOnLoadCallback(OnLoad);
+        imageSearch.execute(keyword);
+    }  
+  
+   google.setOnLoadCallback(OnLoad);
+  
+  </script>
+
+</body>
+</html>
